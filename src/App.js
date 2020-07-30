@@ -1,13 +1,30 @@
 import React from 'react';
 import './App.scss';
+import Post from './components/post.js';
 
 import Question from './assets/question.md';
-import Keywords from './assets/keywords.txt';
 
-import ReactHtmlParser from 'react-html-parser';
-import showdown from 'showdown';
+import ReactMarkdown from 'react-markdown';
+import codeBlock from './components/codeBlock.js';
 
-const converter = new showdown.Converter();
+// POSTS
+const questionOps = {
+  counter: 82,
+  isQuestion: true,
+  tags: ["fullstack", "react", "angular", "javascript"],
+  asked: {
+    date: "Aug 4'20",
+    time: "17:42",
+    user: {
+      img: "./assets/recruiter.webp",
+      name: "recruiter_pete",
+      reputation: 481,
+      gold: 1,
+      silver: 24,
+      bronze: 140
+    }
+  }
+}
 
 export default class App extends React.Component {
   constructor() {
@@ -17,27 +34,26 @@ export default class App extends React.Component {
     }
   }
 
-  parseMarkdown = (text, keywords) => {
-    console.log();
-    text = text.replace(/&lt;([A-Z][\w\d]*)/, "<<span class='green'>$1</span>");
-    text = text.replace(/(".*")/, "<span class='red'>$1</span>");
-    text = text.replace(/(["'])((?:\\\1|(?:(?!\1)).)*)(\1)/, "<span class='red'>$1$2$3</span>");
-    text = text.replace(new RegExp("\\b(" + keywords.map(x => x.trim()).join("|") + ")\\b", "g"), "<span class='blue'>$1</span>");
-    return text;
-  }
+  // parseMarkdown = (text, keywords) => {
+  //   let words = keywords.map(x => x.trim()).join("|");
+  //   console.log(text);
+  //   text = text.replace(/&lt;([A-Z][\w\d]*)/, "<<span class='green'>$1</span>");
+  //   text = text.replace(/(".*")/, "<span class='red'>$1</span>");
+  //   text = text.replace(/(["'])((?:\\\1|(?:(?!\1)).)*)(\1)/, "<span class='red'>$1$2$3</span>");
+  //   text = text.replace(new RegExp("\\b(" + words + ")\\b", "g"), "<span class='blue'>$1</span>");
+  //   text = text.replace(new RegExp("(?:" + words + ")\\s(\\w+)", "g"), "<span class='green'>$1</span>");
+  //   return text;
+  // }
 
   componentDidMount() {
     Promise.all([
-      fetch(Question),
-      fetch(Keywords)
+      fetch(Question)
     ])
-    .then(([res1, res2]) => Promise.all([res1.text(), res2.text()]))
-    .then(([text1, text2]) => this.setState({markdown: text1, keywords: text2.split("\n")}))
+    .then(([res1]) => Promise.all([res1.text()]))
+    .then(([text1]) => this.setState({markdown: text1}));
   }
 
   render() {
-    const question = this.parseMarkdown(converter.makeHtml(this.state.markdown), this.state.keywords ?? []);
-
     return (
       <div className="root">
         <header className="navbar">
@@ -82,7 +98,9 @@ export default class App extends React.Component {
                     </span>
                 </div>
                 <div className="main-question">
-                  {ReactHtmlParser(question)}
+                    <Post options={questionOps}>
+                      <ReactMarkdown source={this.state.markdown} renderers={{code: codeBlock}} />
+                    </Post>      
                 </div>
                 <div className="main-answers">
                 </div>

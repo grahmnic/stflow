@@ -1,0 +1,35 @@
+.post-tags {
+
+}
+
+.post-wrapper {
+    display: flex;
+}
+
+.post-side {
+    width: auto;
+    color: #6A737C;
+    padding: 1rem 15px 0px 0px;
+}
+
+.post-counter {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 1px 1px 3px 1px;
+}
+
+.post-main {
+    flex-grow: 1;
+}
+
+.post-caret {
+    margin: 1px;
+    path {
+        fill: #BBC0C4;
+        cursor: pointer;
+    }
+}
+
+.active path {
+    fill: #F48024;
+}

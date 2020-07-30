@@ -115,13 +115,13 @@ html, body {
 
 .main-panel {
   flex-grow: 1;
-  padding: 5rem 30px 0px 30px;
+  padding: 5rem 20px 0px 20px;
   color: rgb(60,65,70);
 }
 
 .main-title {
   font-size: 1.5rem;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   border-bottom: 1px solid rgb(221, 221, 221);
   span {
       font-size: 0.8rem;
@@ -147,10 +147,11 @@ html, body {
 }
 
 pre {
-  padding: 15px 10px;
+  padding: 15px 10px !important;
   width: 100%;
-  background: #EFF0F1;
-  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #EFF0F1 !important;
+  font-family: 'Source Sans Pro', sans-serif !important;
+  border: none !important;
 }
 
 code {
