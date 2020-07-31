@@ -1,12 +1,20 @@
-How would I load a .md markdown file into a react component? I have tried so many npm libraries through google searches and I cant find a good solution.
+How would I use the GenericCandidate library for my FullstackPosition component? I keep getting this CandidateError: This candidate isn't the right fit even though I follow the tutorial. I have tried so many candidates through other searches and I cant find a good solution.
 
-I want to load the .md file something like:
+I want to fill my FullstackRole using GenericCandidate something like:
 ```
-import HiThere from './../hithere.js';
+import { GenericCandidate } from './../../candidates';
+import { FullstackPosition } from './mycompany/';
 
-render() {
-    <div>
-        <MarkDown src="about.md" />
-    </div>
+export default FullstackRole = ({requirements}) => {
+    const code = GenericCandidate.generateCode(requirements);
+
+    return (
+        <FullstackPosition 
+            fast_learner={true} 
+            team_player={true} 
+            is_funny={Math.random() > 0.99 ? true : false} >
+            {code}
+        </FullstackPosition>
+    );
 }
 ```

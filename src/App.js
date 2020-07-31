@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 import Post from './components/post.js';
+import Recruiter from './assets/recruiter.webp';
 
 import Question from './assets/question.md';
 
@@ -16,7 +17,7 @@ const questionOps = {
     date: "Aug 4'20",
     time: "17:42",
     user: {
-      img: "./assets/recruiter.webp",
+      img: Recruiter,
       name: "recruiter_pete",
       reputation: 481,
       gold: 1,

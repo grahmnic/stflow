@@ -1,7 +1,3 @@
-.post-tags {
-
-}
-
 .post-wrapper {
     display: flex;
 }
@@ -20,6 +16,7 @@
 
 .post-main {
     flex-grow: 1;
+    padding-right: 20px;
 }
 
 .post-caret {
@@ -32,4 +29,117 @@
 
 .active path {
     fill: #F48024;
+}
+
+.post-tags {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    color: #6A73B4;
+    margin-top: 15px;
+
+    div {
+        margin-right: 6px;
+        padding: 3px 6px;
+        background: #E1ECF4;
+        border-radius: 2px;
+        cursor: pointer;
+        &:hover {
+            color: #52588b;
+        }
+    }
+}
+
+.post-meta {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-links {
+    display: flex;
+    font-size: 0.8rem;
+    color: #848D95;
+    height: fit-content;
+    div {
+        display: inline;
+        margin-right: 12px;
+        cursor: pointer;
+        &:hover {
+            color: #404549;
+        }
+    }
+}
+
+.post-history {
+    font-size: 0.75rem;
+}
+
+.post-asked {
+    padding: 10px 8px;
+    color: #6A737C;
+    background-color: #E1ECF4;
+}
+
+.post-asked-stamp {
+
+}
+
+.post-asked-user {
+    display: flex;
+    width: 12rem;
+    margin-top: 5px;
+    img {
+        margin-right: 8px;
+    }
+}
+
+.post-asked-user-info {
+    display: flex;
+    flex-direction: column;
+    div {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        &:first-child {
+            color: #0077CC;
+            cursor: pointer;
+            &:hover {
+                color: #008bee;
+            }
+        }
+        &:nth-child(2) {
+            display: flex;
+            justify-content: center;
+            color: #848D95;
+            span:first-child {
+                color: #6A737C;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin: 0px 2px 0px 6px;
+}
+
+.gold {
+    background-color: #FFCC01;
+}
+
+.silver {
+    background-color: #B4B8BC;
+}
+
+.bronze {
+    background-color: #D1A684;
+}
+
+.post-comments {
+    margin-top: 20px;
+    border-top: 1px solid rgb(221, 221, 221);
 }

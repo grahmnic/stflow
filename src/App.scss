@@ -58,7 +58,6 @@ html, body {
 .content {
   max-width: 70rem;
   width: 100%;
-  height: 150%;
   display: flex;
 }
 
@@ -114,7 +113,6 @@ html, body {
 }
 
 .main-panel {
-  flex-grow: 1;
   padding: 5rem 20px 0px 20px;
   color: rgb(60,65,70);
 }
@@ -148,14 +146,20 @@ html, body {
 
 pre {
   padding: 15px 10px !important;
-  width: 100%;
   background-color: #EFF0F1 !important;
   font-family: 'Source Sans Pro', sans-serif !important;
   border: none !important;
+  white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
+  white-space: -pre-wrap; /* Opera */
+  white-space: -o-pre-wrap; /* Opera */
+  white-space: pre-wrap !important; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+  word-wrap: break-word !important; /* IE 5.5+ */
 }
 
 code {
   font-size: 0.8rem;
+  white-space: inherit;
+  word-break: inherit;
 
   .blue {
     color: #0054A3;

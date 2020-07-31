@@ -59,19 +59,25 @@ export default class Post extends React.Component {
                                         asked {this.state.asked.date} at {this.state.asked.time}
                                     </div>
                                     <div className="post-asked-user">
-                                        <img src={this.state.asked.user.img} />
+                                        <img width="32" height="32" src={this.state.asked.user.img} />
                                         <div className="post-asked-user-info">
-                                            <p>{this.state.asked.user.name}</p>
-                                            <span>{this.state.asked.user.reputation}</span>
-                                            <span>{this.state.asked.user.gold}</span>
-                                            <span>{this.state.asked.user.silver}</span>
-                                            <span>{this.state.asked.user.bronze}</span>
+                                            <div>{this.state.asked.user.name}</div>
+                                            <div>
+                                                <span>{this.state.asked.user.reputation}</span>
+                                                <span className="dot gold"></span>
+                                                <span>{this.state.asked.user.gold}</span>
+                                                <span className="dot silver"></span>
+                                                <span>{this.state.asked.user.silver}</span>
+                                                <span className="dot bronze"></span>
+                                                <span>{this.state.asked.user.bronze}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="post-comments">
+                            
                         </div>
                     </div>
                 </div>
