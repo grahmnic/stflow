@@ -24,15 +24,48 @@ const questionOps = {
       silver: 24,
       bronze: 140
     }
+  },
+  comments: [{
+    content: "Note that though, you might get this: 'Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience.'",
+    options: {
+      author: "Haru",
+      score: 28,
+      date: "Aug 4'20",
+      time: "20:09"
+    }
+  }, {
+    content: "@Hari What is the way to perform a synchronous ajax call using jQuery without use the main thread?",
+    options: {
+      author: "moopet",
+      score: 6,
+      date: "Aug 4'20",
+      time: "20:43"
+    }
+  }, {
+    content: `I don't see that this answer has anything to offer, it's just the accepted answer wrapped into a function and answered four years later. It's a bad thing to advise people to C+P, because the function does not indicate what it does. "So getURL vs get ? why does one hang my browser?" etc.`,
+    options: {
+      author: "Jose Juanez",
+      score: 2,
+      date: "Aug 5'20",
+      time: "8:15"
+    }
   }
+  ]
 }
 
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      markdown: ''
+      markdown: '',
+      sort_answers: 'votes'
     }
+  }
+
+  sort_answer = (sort) => {
+    this.setState({
+      sort_answers: sort
+    });
   }
 
   // parseMarkdown = (text, keywords) => {
@@ -104,6 +137,14 @@ export default class App extends React.Component {
                     </Post>      
                 </div>
                 <div className="main-answers">
+                  <div className="main-answers-header">
+                    <span>{15} Answers</span>
+                    <div className="tabs">
+                      <div onClick={() => this.sort_answer('active')} className={`tab ${this.state.sort_answers === 'active' ? 'active' : null}`}>Active</div>
+                      <div onClick={() => this.sort_answer('oldest')} className={`tab ${this.state.sort_answers === 'oldest' ? 'active' : null}`}>Oldest</div>
+                      <div onClick={() => this.sort_answer('votes')} className={`tab ${this.state.sort_answers === 'votes' ? 'active' : null}`}>Votes</div>
+                    </div>
+                  </div>
                 </div>
             </div>
           </div>

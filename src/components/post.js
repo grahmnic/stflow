@@ -1,4 +1,5 @@
 import React from 'react';
+import Comment from './comment.js';
 import './post.scss';
 
 export default class Post extends React.Component {
@@ -28,6 +29,10 @@ export default class Post extends React.Component {
         if(this.state.loading) {
             const tags = this.props.options.tags.map(x => 
                 <div key={x} className="post-tag">{x}</div>
+            );
+
+            const comments = this.props.options.comments.map(x => 
+                <Comment options={x.options}>{x.content}</Comment>
             );
 
             return (
@@ -77,7 +82,10 @@ export default class Post extends React.Component {
                             </div>
                         </div>
                         <div className="post-comments">
-                            
+                            {comments}
+                            <div className="post-user-comment">
+                                add a comment
+                            </div>
                         </div>
                     </div>
                 </div>

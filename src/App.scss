@@ -62,17 +62,17 @@ html, body {
 }
 
 .side-panel-wrapper {
+  height: 100%;
   width: 160px;
   min-width: 160px;
-  height: 100%;
   border-right: 1px solid #ccc;
 }
 
 .side-panel {
-  position: fixed;
   top: 3rem;
   font-size: 0.8rem;
   height: 100%;
+  position: fixed;
 
   a:first-child {
       margin: 20px 0px;
@@ -170,4 +170,39 @@ code {
   .green {
     color: #2B91AF;
   }
+}
+
+.main-answers {
+
+}
+
+.main-answers-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tabs {
+  display: flex;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  border: 1px solid rgb(132, 141, 149);
+  color: #6A737C;
+}
+
+.tab {
+  padding: 8px;
+  border-left: 1px solid rgb(132, 141, 149);
+  cursor: pointer;
+  &:hover {
+    color: #3C4146;
+  }
+  &:first-child {
+    border: none;
+  }
+}
+
+.active {
+  color: #3C4146;
+  background-color: #E4E6E8;
 }

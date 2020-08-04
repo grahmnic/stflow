@@ -1,0 +1,45 @@
+@import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
+
+.comment-wrapper {
+    font-size: 0.75rem;
+    display: flex;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    line-height: 1.3;
+    padding: 5px 0px;
+    span {
+        margin-right: 10px;
+    }
+    div {
+        color: #242729;
+        span {
+            margin: 0;
+            color: #9199A1;
+            &:first-child {
+                color: #0077CC;
+                background-color: #ECE1F4;
+                padding: 1px 2px;
+            }
+            &:nth-child(2)::after{
+                content: " at ";
+            }
+            &:nth-child(3)::after {
+                content: " \f304";
+                font-size: 0.65rem;
+                font-weight: 900;
+                font-family: 'Font Awesome 5 Free';
+            }
+        }
+    }
+}
+
+.score-high {
+    color: #F48042;
+}
+
+.score-medium {
+    color: #AE5200;
+}
+
+.score-low {
+    color: #9199A1;
+}
