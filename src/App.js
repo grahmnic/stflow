@@ -99,25 +99,25 @@ export default class App extends React.Component {
           </div>
 
         </header>
+        <div className="side-panel-wrapper">
+            <div className="side-panel">
+                <a href="#">Top</a>
+                <div className="side-panel-list">
+                  <span>Skills</span>
+                  <a className="active" href="#">Tags</a>
+                  <a href="#">Technical</a>
+                  <a href="#">Non-technical</a>
+                </div>
+                <div className="side-panel-list">
+                  <span>Projects</span>
+                  <a href="#">C4ME</a>
+                  <a href="#">Boba Beware</a>
+                  <a href="#">LolEsports CRUD</a>
+                </div>
+            </div>
+        </div>
         <div className="content-wrapper">
           <div className="content">
-            <div className="side-panel-wrapper">
-              <div className="side-panel">
-                  <a href="#">Top</a>
-                  <div className="side-panel-list">
-                    <span>Skills</span>
-                    <a className="active" href="#">Tags</a>
-                    <a href="#">Technical</a>
-                    <a href="#">Non-technical</a>
-                  </div>
-                  <div className="side-panel-list">
-                    <span>Projects</span>
-                    <a href="#">C4ME</a>
-                    <a href="#">Boba Beware</a>
-                    <a href="#">LolEsports CRUD</a>
-                  </div>
-              </div>
-            </div>
             <div className="main-panel">
                 <div className="main-title">
                     <div>Keep getting "CandidateError: This candidate isn't the right fit"</div>
@@ -145,6 +145,12 @@ export default class App extends React.Component {
                       <div onClick={() => this.sort_answer('votes')} className={`tab ${this.state.sort_answers === 'votes' ? 'active' : null}`}>Votes</div>
                     </div>
                   </div>
+                  <div> ALL WORK AND NO PLAY </div>
+                  <div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div>
+                  <div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div>
+                  <div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div>
+                  <div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div>
+                  <div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div>
                 </div>
             </div>
           </div>
