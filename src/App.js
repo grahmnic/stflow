@@ -2,8 +2,10 @@ import React from 'react';
 import './App.scss';
 import Post from './components/post.js';
 import Recruiter from './assets/recruiter.webp';
+import Punpun from './assets/punpun.jpg';
 
 import Question from './assets/question.md';
+import Answer1 from './assets/answer_1.md';
 
 import ReactMarkdown from 'react-markdown';
 import codeBlock from './components/codeBlock.js';
@@ -26,25 +28,25 @@ const questionOps = {
     }
   },
   comments: [{
-    content: "Note that though, you might get this: 'Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience.'",
+    content: "+1 Ran into this problem a lot, there really isn't a good way of finding valid Candidates so I often just use a hack. Not sure if there are other libraries that come with a fix.",
     options: {
-      author: "Haru",
+      author: "recruiter_george",
       score: 28,
       date: "Aug 4'20",
       time: "20:09"
     }
   }, {
-    content: "@Hari What is the way to perform a synchronous ajax call using jQuery without use the main thread?",
+    content: "@recruiter_george I heard of a new candidate library but I'm not exactly an expert of it, can anyone point us in the right direction?",
     options: {
-      author: "moopet",
-      score: 6,
+      author: "recruiter_joe",
+      score: 0,
       date: "Aug 4'20",
       time: "20:43"
     }
   }, {
-    content: `I don't see that this answer has anything to offer, it's just the accepted answer wrapped into a function and answered four years later. It's a bad thing to advise people to C+P, because the function does not indicate what it does. "So getURL vs get ? why does one hang my browser?" etc.`,
+    content: `What is even the point of this garbage question? Do your own research first before coming to use to do your homework for you`,
     options: {
-      author: "Jose Juanez",
+      author: "moop",
       score: 2,
       date: "Aug 5'20",
       time: "8:15"
@@ -53,11 +55,39 @@ const questionOps = {
   ]
 }
 
+const answer1Ops = {
+  counter: 118,
+  isQuestion: false,
+  asked: {
+    date: "Aug 6'20",
+    time: "7:42",
+    user: {
+      img: Punpun,
+      name: "oyasumi",
+      reputation: 2481,
+      gold: 8,
+      silver: 80,
+      bronze: 212
+    }
+  },
+  comments: [{
+    content: "Why is this garbage even the accepted answer?",
+    options: {
+      author: "greg95",
+      score: 0,
+      date: "Aug 6'20",
+      time: "8:11"
+    }
+  },
+  ]
+}
+
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      markdown: '',
+      question: '',
+      answers: [],
       sort_answers: 'votes'
     }
   }
@@ -81,10 +111,11 @@ export default class App extends React.Component {
 
   componentDidMount() {
     Promise.all([
-      fetch(Question)
+      fetch(Question),
+      fetch(Answer1)
     ])
-    .then(([res1]) => Promise.all([res1.text()]))
-    .then(([text1]) => this.setState({markdown: text1}));
+    .then(([res1, res2]) => Promise.all([res1.text(), res2.text()]))
+    .then(([text1, text2]) => this.setState({question: text1, answers: [text2]}));
   }
 
   render() {
@@ -133,7 +164,7 @@ export default class App extends React.Component {
                 </div>
                 <div className="main-question">
                     <Post options={questionOps}>
-                      <ReactMarkdown source={this.state.markdown} renderers={{code: codeBlock}} />
+                      <ReactMarkdown source={this.state.question} renderers={{code: codeBlock}} />
                     </Post>      
                 </div>
                 <div className="main-answers">
@@ -145,12 +176,9 @@ export default class App extends React.Component {
                       <div onClick={() => this.sort_answer('votes')} className={`tab ${this.state.sort_answers === 'votes' ? 'active' : null}`}>Votes</div>
                     </div>
                   </div>
-                  <div> ALL WORK AND NO PLAY </div>
-                  <div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div>
-                  <div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div>
-                  <div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div>
-                  <div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div>
-                  <div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div><div> ALL WORK AND NO PLAY </div>
+                  <Post options={answer1Ops}>
+                    <ReactMarkdown source={this.state.answers[0]} renderers={{code: codeBlock}} />
+                  </Post>
                 </div>
             </div>
           </div>

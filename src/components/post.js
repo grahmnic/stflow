@@ -27,13 +27,13 @@ export default class Post extends React.Component {
 
     render() {
         if(this.state.loading) {
-            const tags = this.props.options.tags.map(x => 
+            const tags = this.props.options.tags ? this.props.options.tags.map(x => 
                 <div key={x} className="post-tag">{x}</div>
-            );
+            ) : null;
 
-            const comments = this.props.options.comments.map(x => 
-                <Comment options={x.options}>{x.content}</Comment>
-            );
+            const comments = this.props.options.comments ? this.props.options.comments.map((x,i) => 
+                <Comment key={i} options={x.options}>{x.content}</Comment>
+            ) : null;
 
             return (
                 <div className="post-wrapper">
@@ -61,7 +61,7 @@ export default class Post extends React.Component {
                                 </div>
                                 <div className="post-asked">
                                     <div className="post-asked-stamp">
-                                        asked {this.state.asked.date} at {this.state.asked.time}
+                                        {this.props.options.isQuestion ? "asked" : "answered"} {this.state.asked.date} at {this.state.asked.time}
                                     </div>
                                     <div className="post-asked-user">
                                         <img width="32" height="32" src={this.state.asked.user.img} />
