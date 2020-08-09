@@ -9,10 +9,7 @@ export default FullstackRole = ({requirements}) => {
     const code = GenericCandidate.generateCode(requirements);
 
     return (
-        <FullstackPosition 
-            fast_learner={true} 
-            team_player={true} 
-            is_funny={Math.random() > 0.99 ? true : false} >
+        <FullstackPosition>
             {code}
         </FullstackPosition>
     );

@@ -14,8 +14,9 @@ import ReactMarkdown from 'react-markdown';
 import codeBlock from './components/codeBlock.js';
 
 // POSTS
-const questionOps = {
+const questionOptions = {
   counter: 82,
+  id: "top",
   isQuestion: true,
   tags: ["fullstack", "react", "angular", "javascript"],
   asked: {
@@ -31,7 +32,7 @@ const questionOps = {
     }
   },
   comments: [{
-    content: "+1 Ran into this problem a lot, there really isn't a good way of finding valid Candidates so I often just use a hack. Not sure if there are other libraries that come with a fix.",
+    content: "+1 Ran into this problem a lot, there really isn't a good way of finding valid Candidates so I often just use a hack. Not sure if there's another module we can use as a fix.",
     options: {
       author: "recruiter_george",
       score: 28,
@@ -49,7 +50,7 @@ const questionOps = {
   }, {
     content: `What is even the point of this garbage question? Do your own research first before coming to us to do your homework for you`,
     options: {
-      author: "moop",
+      author: "greg86",
       score: 2,
       date: "Aug 5'20",
       time: "8:15"
@@ -58,8 +59,9 @@ const questionOps = {
   ]
 }
 
-const answer1Ops = {
-  counter: 118,
+const skillsOptions = {
+  counter: 48,
+  id: "skills",
   isQuestion: false,
   asked: {
     date: "Aug 6'20",
@@ -73,20 +75,13 @@ const answer1Ops = {
       bronze: 212
     }
   },
-  comments: [{
-    content: "Why is this garbage even the accepted answer?",
-    options: {
-      author: "greg95",
-      score: 0,
-      date: "Aug 6'20",
-      time: "8:11"
-    }
-  },
+  comments: [
   ]
 }
 
-const answer2Ops = {
-  counter: 1336,
+const introOptions = {
+  counter: 336,
+  id: "intro",
   isQuestion: false,
   asked: {
     date: "Aug 6'20",
@@ -128,17 +123,7 @@ export default class App extends React.Component {
     });
   }
 
-  // parseMarkdown = (text, keywords) => {
-  //   let words = keywords.map(x => x.trim()).join("|");
-  //   console.log(text);
-  //   text = text.replace(/&lt;([A-Z][\w\d]*)/, "<<span class='green'>$1</span>");
-  //   text = text.replace(/(".*")/, "<span class='red'>$1</span>");
-  //   text = text.replace(/(["'])((?:\\\1|(?:(?!\1)).)*)(\1)/, "<span class='red'>$1$2$3</span>");
-  //   text = text.replace(new RegExp("\\b(" + words + ")\\b", "g"), "<span class='blue'>$1</span>");
-  //   text = text.replace(new RegExp("(?:" + words + ")\\s(\\w+)", "g"), "<span class='green'>$1</span>");
-  //   return text;
-  // }
-
+  // LOAD ALL THE MARKDOWN FILES HERE
   componentDidMount() {
     Promise.all([
       fetch(Question),
@@ -146,7 +131,7 @@ export default class App extends React.Component {
       fetch(Answer2)
     ])
     .then(([res1, res2, res3]) => Promise.all([res1.text(), res2.text(), res3.text()]))
-    .then(([text1, text2, text3]) => this.setState({question: text1, answers: [text2, text3]}));
+    .then(([text1, text2, text3]) => this.setState({question: text1, answers: [text3, text2]}));
   }
 
   render() {
@@ -194,7 +179,7 @@ export default class App extends React.Component {
                     </span>
                 </div>
                 <div className="main-question">
-                    <Post options={questionOps}>
+                    <Post options={questionOptions}>
                       <ReactMarkdown source={this.state.question} renderers={{code: codeBlock}} />
                     </Post>      
                 </div>
@@ -207,10 +192,10 @@ export default class App extends React.Component {
                       <div onClick={() => this.sort_answer('votes')} className={`tab ${this.state.sort_answers === 'votes' ? 'active' : null}`}>Votes</div>
                     </div>
                   </div>
-                  <Post options={answer1Ops}>
+                  <Post options={introOptions}>
                     <ReactMarkdown source={this.state.answers[0]} renderers={{code: codeBlock}} />
                   </Post>
-                  <Post options={answer2Ops}>
+                  <Post options={skillsOptions}>
                     <ReactMarkdown source={this.state.answers[1]} renderers={{code: codeBlock}} />
                   </Post>
                 </div>
