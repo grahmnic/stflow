@@ -2,15 +2,18 @@
   //font-family: 'Bebas Neue', cursive;
   font-family: Arial, Helvetica, sans-serif;
   color: #0c0d0e;
-  min-height: 100vh;
-  height: 1px;
   display: flex;
   justify-content: center;
+  height: 100%;
 }
 
 @media all and (max-width: 50rem) {
   .side-panel-wrapper {
     display: none;
+  }
+
+  .main-panel {
+    border: none !important;
   }
 }
 
@@ -55,32 +58,33 @@ html, body {
 .content-wrapper {
   position: relative;
   z-index: 1;
-  height: 100%;
   flex-grow: 1;
   max-width: 50rem;
   min-width: 30rem;
   display: flex;
   justify-content: center;
-  padding: 0px 5px;
   box-sizing: border-box;
+  border-left: 1px solid #ccc;
 }
 
 .content {
   width: 100%;
   display: flex;
+  padding: 0px 5px;
 }
 
 .side-panel-wrapper {
   height: 100%;
   width: 160px;
   min-width: 160px;
-  border-right: 1px solid #ccc;
+  position: sticky;
+  top: 0;
 }
 
 .side-panel {
   font-size: 0.8rem;
-  position: sticky;
-  top: 5rem;
+  position: relative;
+  top: 3rem;
 
   a:first-child {
       margin: 20px 0px;
@@ -183,6 +187,7 @@ code {
 .main-answers {
   font-size: 0.9rem;
   color: #242729;
+  margin-top: 8px;
 }
 
 .main-answers-header {

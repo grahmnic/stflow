@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.scss';
 import Post from './components/post.js';
+
 import Recruiter from './assets/recruiter.webp';
 import Punpun from './assets/punpun.jpg';
+import Me from './assets/me.jpg';
 
 import Question from './assets/question.md';
 import Answer1 from './assets/answer_1.md';
+import Answer2 from './assets/answer_2.md';
 
 import ReactMarkdown from 'react-markdown';
 import codeBlock from './components/codeBlock.js';
@@ -44,7 +47,7 @@ const questionOps = {
       time: "20:43"
     }
   }, {
-    content: `What is even the point of this garbage question? Do your own research first before coming to use to do your homework for you`,
+    content: `What is even the point of this garbage question? Do your own research first before coming to us to do your homework for you`,
     options: {
       author: "moop",
       score: 2,
@@ -82,6 +85,33 @@ const answer1Ops = {
   ]
 }
 
+const answer2Ops = {
+  counter: 1336,
+  isQuestion: false,
+  asked: {
+    date: "Aug 6'20",
+    time: "17:22",
+    user: {
+      img: Me,
+      name: "Nick_Chen",
+      reputation: 1,
+      gold: 346,
+      silver: 650,
+      bronze: 7523
+    }
+  },
+  comments: [{
+    content: "THANK YOU THANK YOU. Will use this from now on +1",
+    options: {
+      author: "recruiter_pete",
+      score: 6,
+      date: "Aug 6'20",
+      time: "18:35"
+    }
+  },
+  ]
+}
+
 export default class App extends React.Component {
   constructor() {
     super();
@@ -112,10 +142,11 @@ export default class App extends React.Component {
   componentDidMount() {
     Promise.all([
       fetch(Question),
-      fetch(Answer1)
+      fetch(Answer1),
+      fetch(Answer2)
     ])
-    .then(([res1, res2]) => Promise.all([res1.text(), res2.text()]))
-    .then(([text1, text2]) => this.setState({question: text1, answers: [text2]}));
+    .then(([res1, res2, res3]) => Promise.all([res1.text(), res2.text(), res3.text()]))
+    .then(([text1, text2, text3]) => this.setState({question: text1, answers: [text2, text3]}));
   }
 
   render() {
@@ -178,6 +209,9 @@ export default class App extends React.Component {
                   </div>
                   <Post options={answer1Ops}>
                     <ReactMarkdown source={this.state.answers[0]} renderers={{code: codeBlock}} />
+                  </Post>
+                  <Post options={answer2Ops}>
+                    <ReactMarkdown source={this.state.answers[1]} renderers={{code: codeBlock}} />
                   </Post>
                 </div>
             </div>
