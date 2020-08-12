@@ -36,7 +36,7 @@ export default class Post extends React.Component {
             ) : null;
 
             return (
-                <div className={`post-wrapper ${!this.props.options.isQuestion ? "post-wrapper-border" : null}`}>
+                <div id={this.props.options.id} className={`post-wrapper ${!this.props.options.isQuestion ? "post-wrapper-border" : null}`}>
                     <div className="post-side">
                         <svg className={`post-caret ${this.state.difference > 0 ? "active" : ""}`} preserveAspectRatio="none" width="36" height="36" viewBox="0 0 36 36"><path onClick={() => this.changeDifference(1)} d="M2 26h32L18 10 2 26z"></path></svg>
                         <div className="post-counter">{this.state.counter + this.state.difference}</div>

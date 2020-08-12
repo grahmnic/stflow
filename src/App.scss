@@ -31,26 +31,20 @@ html, body {
   top: 0;
   height: 3rem;
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.35rem;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px, rgba(0, 0, 0, 0.05) 0px 1px 4px 0px, rgba(0, 0, 0, 0.05) 0px 2px 8px 0px;
 
   div {
-      flex: 1;
-  }
-}
-
-.navbar-logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  font-family: 'Bebas Neue', cursive;
-  div {
-
-  }
-  span {
-      color: #BCBBBB;
-      &:nth-child(2) {
+      margin: 0 1rem;
+      cursor: pointer;
+      &:hover {
+        color: #8C939A;
+        &::first-letter {
           color: #F48024;
+        }
       }
   }
 }
@@ -219,4 +213,9 @@ code {
 .active {
   color: #3C4146;
   background-color: #E4E6E8;
+}
+
+#top {
+  position: absolute;
+  top: 0;
 }

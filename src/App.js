@@ -16,7 +16,6 @@ import codeBlock from './components/codeBlock.js';
 // POSTS
 const questionOptions = {
   counter: 82,
-  id: "top",
   isQuestion: true,
   tags: ["fullstack", "react", "angular", "javascript"],
   asked: {
@@ -81,7 +80,7 @@ const skillsOptions = {
 
 const introOptions = {
   counter: 336,
-  id: "intro",
+  id: "introduction",
   isQuestion: false,
   asked: {
     date: "Aug 6'20",
@@ -123,8 +122,49 @@ export default class App extends React.Component {
     });
   }
 
+  convertRemToPixels = (rem) => {    
+    return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+  }
+
   // LOAD ALL THE MARKDOWN FILES HERE
   componentDidMount() {
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const el = document.querySelector(a.getAttribute('href'));
+        const top = el.getBoundingClientRect().top + window.pageYOffset - this.convertRemToPixels(3);
+        window.scrollTo({
+          top: top,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    this.menuLinks = document.querySelectorAll('.side-panel-list a[href^="#"]');
+    this.menuScroll = [];
+    this.menuLinks.forEach((el) => {
+      var section = el.getAttribute("href");
+      if (section.length)
+        this.menuScroll.push(section);
+    });
+
+    window.addEventListener('scroll', () => {
+      var offset = window.scrollY + this.convertRemToPixels(6);
+      var cur = [];
+      this.menuScroll.map(el => {
+        var test = document.querySelector(el).offsetTop;
+        if(test < offset)
+          cur.push(el);
+      });
+      cur = cur[cur.length-1];
+      var id = cur && cur.length ? cur : "";
+      this.menuLinks.forEach((el) => {
+        el.classList.remove('active');
+        if(id === el.getAttribute("href"))
+          el.classList.add('active');
+      });
+    });
+
     Promise.all([
       fetch(Question),
       fetch(Answer1),
@@ -137,29 +177,26 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="root">
+        <div id="top"></div>
         <header className="navbar">
-          <div className="navbar-logo">
-            full
-            <span>stack</span>
-            <span>overflow</span>
-            &nbsp;dev
-          </div>
-
+            <div>Resume</div>
+            <div>Contacts</div>
+            <div>Potato Me</div>
         </header>
         <div className="side-panel-wrapper">
             <div className="side-panel">
-                <a href="#">Top</a>
+                <a href="#top">Top</a>
                 <div className="side-panel-list">
-                  <span>Skills</span>
-                  <a className="active" href="#">Tags</a>
-                  <a href="#">Technical</a>
-                  <a href="#">Non-technical</a>
+                  <span>About Me</span>
+                  <a href="#introduction">Introduction</a>
+                  {/* <a href="#interests">Interests</a> */}
+                  <a href="#skills">Skills</a>
                 </div>
                 <div className="side-panel-list">
                   <span>Projects</span>
-                  <a href="#">C4ME</a>
+                  {/* <a href="#">C4ME</a>
                   <a href="#">Boba Beware</a>
-                  <a href="#">LolEsports CRUD</a>
+                  <a href="#">LolEsports CRUD</a> */}
                 </div>
             </div>
         </div>
@@ -198,6 +235,7 @@ export default class App extends React.Component {
                   <Post options={skillsOptions}>
                     <ReactMarkdown source={this.state.answers[1]} renderers={{code: codeBlock}} />
                   </Post>
+                  <div style={{height: "1000px"}}></div>
                 </div>
             </div>
           </div>
