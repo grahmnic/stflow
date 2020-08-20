@@ -13,6 +13,10 @@ import Answer2 from './assets/answer_2.md';
 import ReactMarkdown from 'react-markdown';
 import codeBlock from './components/codeBlock.js';
 
+import {Github} from '@styled-icons/entypo-social';
+import {LinkedinSquare} from '@styled-icons/boxicons-logos';
+import {Email} from '@styled-icons/material';
+
 // POSTS
 const questionOptions = {
   counter: 82,
@@ -126,6 +130,10 @@ export default class App extends React.Component {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
   }
 
+  handleIconHover = (hoverClass, e) => {
+    e.target.classList = [hoverClass];
+  }
+
   // LOAD ALL THE MARKDOWN FILES HERE
   componentDidMount() {
     document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -179,8 +187,9 @@ export default class App extends React.Component {
       <div className="root">
         <div id="top"></div>
         <header className="navbar">
-            <div>Resume</div>
-            <div>Contacts</div>
+            <Github onMouseEnter={(e) => this.handleIconHover('iconAnimateIn', e)} onMouseLeave={(e) => this.handleIconHover('iconAnimateOut', e)}/>
+            <LinkedinSquare onMouseEnter={(e) => this.handleIconHover('iconAnimateIn', e)} onMouseLeave={(e) => this.handleIconHover('iconAnimateOut', e)}/>
+            <Email onMouseEnter={(e) => this.handleIconHover('iconAnimateIn', e)} onMouseLeave={(e) => this.handleIconHover('iconAnimateOut', e)}/>
             <div>Potato Me</div>
         </header>
         <div className="side-panel-wrapper">

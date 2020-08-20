@@ -11,9 +11,11 @@
     "react-dom": "^16.13.1",
     "react-html-parser": "^2.0.2",
     "react-markdown": "^4.3.1",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.2",
     "react-syntax-highlighter": "^13.0.0",
-    "showdown": "^1.9.1"
+    "showdown": "^1.9.1",
+    "styled-components": "^5.1.1",
+    "styled-icons": "^10.17.0"
   },
   "scripts": {
     "start": "react-scripts start",
