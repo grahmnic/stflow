@@ -130,10 +130,6 @@ export default class App extends React.Component {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
   }
 
-  handleIconHover = (hoverClass, e) => {
-    e.target.classList = [hoverClass];
-  }
-
   // LOAD ALL THE MARKDOWN FILES HERE
   componentDidMount() {
     document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -148,13 +144,14 @@ export default class App extends React.Component {
       });
     });
 
-    this.menuLinks = document.querySelectorAll('.side-panel-list a[href^="#"]');
+    this.menuLinks = document.querySelectorAll('.side-panel a[href^="#"]');
     this.menuScroll = [];
     this.menuLinks.forEach((el) => {
       var section = el.getAttribute("href");
       if (section.length)
         this.menuScroll.push(section);
     });
+    this.menuLinks[0].classList.add('active');
 
     window.addEventListener('scroll', () => {
       var offset = window.scrollY + this.convertRemToPixels(6);
@@ -166,10 +163,12 @@ export default class App extends React.Component {
       });
       cur = cur[cur.length-1];
       var id = cur && cur.length ? cur : "";
+      var highlighted = false;
       this.menuLinks.forEach((el) => {
         el.classList.remove('active');
         if(id === el.getAttribute("href"))
           el.classList.add('active');
+          highlighted = true;
       });
     });
 
@@ -187,9 +186,7 @@ export default class App extends React.Component {
       <div className="root">
         <div id="top"></div>
         <header className="navbar">
-            <Github onMouseEnter={(e) => this.handleIconHover('iconAnimateIn', e)} onMouseLeave={(e) => this.handleIconHover('iconAnimateOut', e)}/>
-            <LinkedinSquare onMouseEnter={(e) => this.handleIconHover('iconAnimateIn', e)} onMouseLeave={(e) => this.handleIconHover('iconAnimateOut', e)}/>
-            <Email onMouseEnter={(e) => this.handleIconHover('iconAnimateIn', e)} onMouseLeave={(e) => this.handleIconHover('iconAnimateOut', e)}/>
+            
             <div>Potato Me</div>
         </header>
         <div className="side-panel-wrapper">
@@ -231,7 +228,7 @@ export default class App extends React.Component {
                 </div>
                 <div className="main-answers">
                   <div className="main-answers-header">
-                    <span>{15} Answers</span>
+                    <span>{this.state.answers.length} Answers</span>
                     <div className="tabs">
                       <div onClick={() => this.sort_answer('active')} className={`tab ${this.state.sort_answers === 'active' ? 'active' : null}`}>Active</div>
                       <div onClick={() => this.sort_answer('oldest')} className={`tab ${this.state.sort_answers === 'oldest' ? 'active' : null}`}>Oldest</div>
