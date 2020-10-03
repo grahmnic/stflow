@@ -31,7 +31,8 @@ html, body {
   z-index: 100;
   display: block;
   top: 0;
-  height: 3rem;
+  left: 0;
+  height: 2.5rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -228,4 +229,15 @@ code {
 #top {
   position: absolute;
   top: 0;
+}
+
+.footer {
+  color: #848abb;
+  background: #c5d0d8;
+  padding: 0.25rem 1rem;
+  border-radius: 0.25rem;
+  width: fit-content;
+  margin: 60vh 0 1rem 0;
+  font-size: 0.875rem;
+  font-weight: bold;
 }

@@ -9,6 +9,7 @@ import Me from './assets/me.jpg';
 import Question from './assets/question.md';
 import Answer1 from './assets/answer_1.md';
 import Answer2 from './assets/answer_2.md';
+import Answer3 from './assets/answer_3.md';
 
 import ReactMarkdown from 'react-markdown';
 import codeBlock from './components/codeBlock.js';
@@ -16,6 +17,9 @@ import codeBlock from './components/codeBlock.js';
 import {Github} from '@styled-icons/entypo-social';
 import {LinkedinSquare} from '@styled-icons/boxicons-logos';
 import {Email} from '@styled-icons/material';
+
+// PACKAGES
+import moment from 'moment';
 
 // POSTS
 const questionOptions = {
@@ -92,7 +96,7 @@ const introOptions = {
     user: {
       img: Me,
       name: "Nick_Chen",
-      reputation: 1,
+      reputation: 11244,
       gold: 346,
       silver: 650,
       bronze: 7523
@@ -110,13 +114,74 @@ const introOptions = {
   ]
 }
 
+const hobbyOptions = {
+  counter: 26,
+  id: "hobbies",
+  isQuestion: false,
+  asked: {
+    date: "Aug 6'20",
+    time: "17:22",
+    user: {
+      img: Me,
+      name: "a_gratin",
+      reputation: 2662,
+      gold: 16,
+      silver: 45,
+      bronze: 43
+    }
+  },
+  comments: [{
+    content: "😊",
+    options: {
+      author: "Nick_Chen",
+      score: 45,
+      date: "Aug 6'20",
+      time: "18:35"
+    }
+  }, {
+    content: "👋",
+    options: {
+      author: "dzxrkcplm",
+      score: 3,
+      date: "Aug 6'20",
+      time: "18:35"
+    }
+  }, {
+    content: "👋👋",
+    options: {
+      author: "Nick_Chen",
+      score: 12,
+      date: "Aug 6'20",
+      time: "18:35"
+    }
+  }, {
+    content: "👋👋👋",
+    options: {
+      author: "Oleg Chernyshevsky",
+      score: 1,
+      date: "Aug 6'20",
+      time: "18:35"
+    }
+  }, {
+    content: "Yes mods, this thread right here",
+    options: {
+      author: "MrTuring",
+      score: 8,
+      date: "Aug 6'20",
+      time: "18:35"
+    }
+  }
+  ]
+}
+
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
       question: '',
       answers: [],
-      sort_answers: 'votes'
+      sort_answers: 'votes',
+      options: [introOptions, skillsOptions, hobbyOptions]
     }
   }
 
@@ -175,10 +240,11 @@ export default class App extends React.Component {
     Promise.all([
       fetch(Question),
       fetch(Answer1),
-      fetch(Answer2)
+      fetch(Answer2),
+      fetch(Answer3)
     ])
-    .then(([res1, res2, res3]) => Promise.all([res1.text(), res2.text(), res3.text()]))
-    .then(([text1, text2, text3]) => this.setState({question: text1, answers: [text3, text2]}));
+    .then(([res1, res2, res3, res4]) => Promise.all([res1.text(), res2.text(), res3.text(), res4.text()]))
+    .then(([text1, text2, text3, text4]) => this.setState({question: text1, answers: [text3, text2, text4]}));
   }
 
   render() {
@@ -187,7 +253,7 @@ export default class App extends React.Component {
         <div id="top"></div>
         <header className="navbar">
             
-            <div>Potato Me</div>
+            <div>Resume</div>
         </header>
         <div className="side-panel-wrapper">
             <div className="side-panel">
@@ -197,6 +263,7 @@ export default class App extends React.Component {
                   <a href="#introduction">Introduction</a>
                   {/* <a href="#interests">Interests</a> */}
                   <a href="#skills">Skills</a>
+                  <a href="#hobbies">Hobbies</a>
                 </div>
                 <div className="side-panel-list">
                   <span>Projects</span>
@@ -235,13 +302,18 @@ export default class App extends React.Component {
                       <div onClick={() => this.sort_answer('votes')} className={`tab ${this.state.sort_answers === 'votes' ? 'active' : null}`}>Votes</div>
                     </div>
                   </div>
-                  <Post options={introOptions}>
-                    <ReactMarkdown source={this.state.answers[0]} renderers={{code: codeBlock}} />
-                  </Post>
-                  <Post options={skillsOptions}>
-                    <ReactMarkdown source={this.state.answers[1]} renderers={{code: codeBlock}} />
-                  </Post>
-                  <div style={{height: "1000px"}}></div>
+                  {
+                    this.state.answers.map((answer, index) => {
+                      return (
+                        <Post options={this.state.options[index]}>
+                          <ReactMarkdown source={answer} renderers={{code: codeBlock}} />
+                        </Post>
+                      );
+                    })
+                  }
+                </div>
+                <div class="footer">
+                  nick chen&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;twenty-twenty
                 </div>
             </div>
           </div>
