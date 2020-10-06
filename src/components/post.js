@@ -2,6 +2,10 @@ import React from 'react';
 import Comment from './comment.js';
 import './post.scss';
 
+
+import ReactMarkdown from 'react-markdown';
+import codeBlock from './codeBlock.js';
+
 export default class Post extends React.Component {
     constructor(props) {
         super(props);
@@ -44,7 +48,7 @@ export default class Post extends React.Component {
                     </div>
                     <div className="post-main">
                         <div className="post-content">
-                            {this.props.children}
+                            <ReactMarkdown source={this.props.options.content} renderers={{code: codeBlock}} />
                         </div>
                         <div className="post-tags">
                             {tags}

@@ -11,7 +11,7 @@ Then simply put it anywhere you want where you use GenericCandidate.
 ...
 <SoftwareEngineerRole dev={NickChenDev}></SoftwareEngineerRole>
 ```
-If you want a more indepth look at the NickChenDev class here's a sneakpeek of the consoled output:
+If you want a more indepth look at the NickChenDev module here's a snippet of the consoled output:
 ```
 Object { 
     candidate: {
@@ -19,22 +19,26 @@ Object {
         role: "Software Engineer",
         qualified: true
     },  
-    advanced_skills: Array[1337]
-        0: "Angular2+",
-        1: "Git",
+    advanced_skills: Array[1337],
+        0: "Vue"
+        1: "SASS",
         2: "HTML/CSS"
         3: "JavaScript",
         4: "MSSQL",
-        5: ".NET Core",
         ...,
-    intermediate_skills: Array[123]
+    intermediate_skills: Array[123],
         0: "NodeJS",
         1: "React",
-        2: "SASS",
-        3: "Wordpress",
-        4: "WooCommerce",
+        2: "Angular2+",
+        3: "Git",
         ...,
-    profile_readability: "At least it isn't xml.",
+    misc_skills: Array[42],
+        1: "Wordpress",
+        2: "WooCommerce",
+        3: "SSRS",
+        4: "MongoDB",
+        ...,
+    readability: "Not xml.",
     ...
     }
 ```
