@@ -10,6 +10,7 @@ import Progress from './assets/data/progress.js';
 import {Github} from '@styled-icons/entypo-social';
 import {LinkedinSquare} from '@styled-icons/boxicons-logos';
 import {Email} from '@styled-icons/material';
+import Resume from './assets/resume-september2020 (1).pdf';
 
 // PACKAGES
 import moment from 'moment';
@@ -91,7 +92,7 @@ export default class App extends React.Component {
       <div className="root">
         <div id="top"></div>
         <header className="navbar">
-            <div>Resume</div>
+            <a target="_blank" href={Resume}>Resume</a>
         </header>
         <div className="side-panel-wrapper">
             <div className="side-panel">

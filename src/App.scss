@@ -47,8 +47,10 @@ html, body {
     margin: 0px 10px;
   }
 
-  div {
+  a {
       margin: 0 1rem;
+      color: #0c0d0e;
+      text-decoration: none;
       cursor: pointer;
       &:hover {
         color: #8C939A;
