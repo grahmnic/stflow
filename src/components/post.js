@@ -24,18 +24,24 @@ export default class Post extends React.Component {
     }
 
     changeDifference = (val) => {
-        this.setState({
-            difference: val
-        });
+        if (this.state.difference === val) {
+            this.setState({
+                difference: 0
+            })
+        } else {
+            this.setState({
+                difference: val
+            });
+        }
     }
 
     render() {
         if(this.state.loading) {
-            const tags = this.props.options.tags ? this.props.options.tags.map(x => 
+            const tags = this.props.options.tags ? this.props.options.tags.map(x =>
                 <div key={x} className="post-tag">{x}</div>
             ) : null;
 
-            const comments = this.props.options.comments ? this.props.options.comments.map((x,i) => 
+            const comments = this.props.options.comments ? this.props.options.comments.map((x,i) =>
                 <Comment key={i} options={x.options}>{x.content}</Comment>
             ) : null;
 

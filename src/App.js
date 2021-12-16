@@ -10,7 +10,7 @@ import Progress from './assets/data/progress.js';
 import {Github} from '@styled-icons/entypo-social';
 import {LinkedinSquare} from '@styled-icons/boxicons-logos';
 import {Email} from '@styled-icons/material';
-import Resume from './assets/resume-september2020 (1).pdf';
+import Resume from './assets/resumeNov2021.pdf';
 
 // PACKAGES
 import moment from 'moment';
@@ -31,7 +31,7 @@ export default class App extends React.Component {
     });
   }
 
-  convertRemToPixels = (rem) => {    
+  convertRemToPixels = (rem) => {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
   }
 
@@ -128,7 +128,7 @@ export default class App extends React.Component {
                     </span>
                 </div>
                 <div className="main-question">
-                  {this.state.question ? <Post options={this.state.question} />  : null}   
+                  {this.state.question ? <Post options={this.state.question} />  : null}
                 </div>
                 <div className="main-answers">
                   <div className="main-answers-header">
@@ -140,13 +140,13 @@ export default class App extends React.Component {
                     </div>
                   </div>
                   {
-                    this.state.answers.map((answer, index) => 
+                    this.state.answers.map((answer, index) =>
                         <Post options={answer} key={index} />
                     )
                   }
                 </div>
                 <div className="footer">
-                  nick chen&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;twenty-twenty
+                  nick chen&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;twenty-twentyone
                 </div>
             </div>
           </div>
